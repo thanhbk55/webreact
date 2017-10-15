@@ -1,14 +1,191 @@
 body{
   margin: 0;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,Arial,sans-serif;
 }
 #root{
   width: 100%;
   height: 100%;
 }
+.navi{
+  background: white;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f3f3f3;
+  height: 50px;
+}
+.toolbar{
+  background: white;
+  padding: 0 20px;
+  height: 36px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.22);
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  align-items: center;
+  font-size: 14px;
+}
 
-.row1{
+.toolbar .toolbar_list_color{
+  flex-grow: 1;
+  flex-basis: 33.333%;
+  margin-top: -2px;
+}
+
+.toolbar .toolbar_list_color .menu{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #373737;
+  font-size: 14px;
+}
+
+.toolbar  .toolbar_color_set{
+  display: flex;
+  justify-content: center;
+  flex-basis: 100%;
+  margin-top: -2px;
+}
+
+.toolbar .toolbar_action{
+  flex-grow: 1;
+  flex-basis: 33.333%;
+  margin-top: -2px;
+}
+.toolbar .toolbar_action ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: flex-end;
+  height: 38px;
+  display: flex;
+}
+
+.toolbar .toolbar_action ul li {
+  margin-left: 10px;
+  position: relative;
+  height: 100%;
+  width: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.toolbar .toolbar_action ul li:hover {
+  background-color: #eceaea;
+}
+
+.toolbar .toolbar_action ul li .glyphicon {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+
+.toolbar .toolbar_action ul li:not(:first-child):before {
+  content: "|";
+  margin-left: 10px;
+  position: absolute;
+  left: -17px;
+  top: 9px;
+  color: #eaeaea;
+}
+
+.toolbar  .toolbar_color_set .hex{
+  display: inline-block;
+  font-family: SF Mono Regular,Source Code Pro,Consolas,monospace;
+  font-size: 15px;
+  position: relative;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 3px;
+  transition: background .2s ease-in-out;
+}
+
+.toolbar  .toolbar_color_set .hex_arrow:last-child{
+  display: none;
+}
+
+.toolbar  .toolbar_color_set .hex:hover{
+  background-color: #eceaea;
+}
+
+.toolbar  .toolbar_color_set .hex .hex_block{
+  position: relative;
+  float: left;
+  margin-top: 3px;
+  margin-right: 3px;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-color: #eaeaea;
+}
+
+.content{
+  height: calc(100vh - 86px);
+  position: absolute;
+  top: 86px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.content .gradientname{
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%,0,0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  top: -8px;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 0;
+  text-align: center;
+  width: 300px;
+}
+
+.content .prev_next{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0,-50%,0);
+  display: block;
+  width: 100%;
+}
+
+.content .prev_next:before, .content .prev_next:after{
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.content .prev_next li {
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  height: 100px;
+  width: 60px;
+  background-color: hsla(0,0%,100%,.1);
+  cursor: pointer;
+  position: relative;
+}
+
+.content .prev_next li:hover{
+  background-color: hsla(0,0%,100%,.2);
+}
+
+
+.content .prev_next li:first-child{
+  float: left;
+}
+
+.content .prev_next li:last-child{
+  float: right;
+}
+
+
+
+/*.row1{
   height: 20%;
-  background: red;
+  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 }
 
 .row2{
@@ -18,7 +195,7 @@ body{
 .row2 .col1 {
   width: 30%;
   height: 100%;
-  background: blue;
+  background: #03a9f4;
   display: inline-block;
 }
 
@@ -26,6 +203,50 @@ body{
 .row2 .col2 {
   width: 70%;
   height: 100%;
-  background: green;
+  background: #673ab7;
   display: inline-block;
 }
+
+.ripple{
+  overflow:hidden;
+}
+
+.ripple-effect{
+  position: absolute;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: white;
+
+
+  animation: ripple-animation 2s;
+}
+
+
+@keyframes ripple-animation {
+  from {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(100);
+    opacity: 0;
+  }
+}
+
+button{
+  position: relative;
+  border: none;
+  outline:none;
+  cursor: pointer;
+  background: #89669b;
+  color: white;
+  padding: 18px 60px;
+  border-radius: 2px;
+  font-size: 22px;
+}
+
+button:active{
+  box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+}
+*/
